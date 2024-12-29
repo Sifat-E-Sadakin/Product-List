@@ -63,7 +63,7 @@ const ProductList = ({ productList }: ProductListProps) => {
   };
   return (
     <div className="">
-      <div className=" sticky top-0 my-5  bg-transparent backdrop-blur-lg z-10 py-2   ">
+      <div className=" sticky top-0   bg-transparent backdrop-blur-lg z-10 py-2   ">
         <div className="container mx-auto flex justify-between items-center px-1 xl:px-16 2xl:px-40 ">
           <h1>
             <span className="text-[#03A629] font-bold text-xl">Green</span>{" "}
