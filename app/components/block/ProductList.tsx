@@ -14,6 +14,8 @@ const ProductList = ({ productList }: ProductListProps) => {
   const [cart, setCart] = useState<any>([]);
   const [openModal, setOpenModal] = useState(false);
   const [modalData, setModalData] = useState<any>(null);
+  const [shake, setShake] = useState(false);
+  const [itemInCart, setItemInCart] = useState(0);
 
   useEffect(() => {
     const productListWithCartInfo = [] as any;
@@ -26,11 +28,21 @@ const ProductList = ({ productList }: ProductListProps) => {
       });
     });
     setCustomProductList(productListWithCartInfo);
-  }, []);
+  }, [productList]);
+
+  useEffect(() => {
+    let totalItem = 0;
+    cart?.map((item: any) => {
+      totalItem += item.cartInfo.quantity;
+    });
+    setItemInCart(totalItem);
+  }, [customProductList, cart]);
 
   const handleAddToCart = (id: number) => {
     const updatedProductList = customProductList?.map((product: any) => {
       if (product.id === id) {
+        setShake(true);
+        setTimeout(() => setShake(false), 500);
         toast.success(`${product.title} added to cart`);
         product.cartInfo.quantity += 1;
         if (product.cartInfo.quantity === 1) {
@@ -41,10 +53,12 @@ const ProductList = ({ productList }: ProductListProps) => {
     });
     setCustomProductList(updatedProductList);
   };
-  console.log(cart);
+
   const handleRemoveFromCart = (id: number) => {
     const updatedProductList = customProductList?.map((product: any) => {
       if (product.id === id) {
+        setShake(true);
+        setTimeout(() => setShake(false), 500);
         toast.error(`${product.title} removed from cart`);
         product.cartInfo.quantity -= 1;
         if (product.cartInfo.quantity === 0) {
@@ -71,11 +85,13 @@ const ProductList = ({ productList }: ProductListProps) => {
           </h1>
           <button
             onClick={() => handleModalOpen()}
-            className="
+            className={`
           bg-[#03A629] text-white px-3 py-2 rounded-lg
-          hover:bg-[#FFA03B] transition-all duration-300   flex items-center gap-1               
-        ">
-            <MdOutlineAddShoppingCart /> View Cart
+          hover:bg-[#FFA03B] transition-all duration-300   flex items-center gap-1 ${
+            shake ? "shake" : ""
+          }            
+        `}>
+            <MdOutlineAddShoppingCart /> View Cart ({itemInCart})
           </button>
         </div>
       </div>

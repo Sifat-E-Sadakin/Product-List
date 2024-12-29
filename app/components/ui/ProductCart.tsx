@@ -9,6 +9,7 @@ import { FaPlus } from "react-icons/fa6";
 import { FiEye } from "react-icons/fi";
 import DynamicModal from "./DynamicModal";
 import AddToCartBtn from "./AddToCartBtn";
+import { FaRegHeart } from "react-icons/fa";
 interface ProductCartProps {
   product: any;
   addToCartFunction: (id: number) => void;
@@ -22,11 +23,13 @@ const ProductCart = ({
 }: ProductCartProps) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalData, setModalData] = useState<any>(null);
+  const [isFav, setIsFav] = useState(false);
 
   const handleModalOpen = (product: any) => {
     setOpenModal(true);
     setModalData(product);
   };
+
   return (
     <div className="flex group  items-start justify-center rounded-lg hover:shadow-lg  transition-all duration-300 max-w-[218px]">
       <div>
@@ -68,6 +71,13 @@ const ProductCart = ({
             <h3 className="text-white text-center">
               {product.discountPercentage} %
             </h3>
+          </div>
+          <div className={`${isFav ? "block" : "hidden"} group-hover:block`}>
+            <FaRegHeart
+              onClick={() => setIsFav(!isFav)}
+              fill={isFav ? "#FF0000" : "#fff"}
+              className="absolute top-3 right-3 text-white cursor-pointer"
+            />
           </div>
         </div>
         <div className="w-48 px-2 py-3">
