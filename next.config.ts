@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  distDir: "build",
+
   logging: {
     fetches: {
       fullUrl: true,
