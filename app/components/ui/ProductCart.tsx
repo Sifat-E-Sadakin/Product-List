@@ -88,6 +88,7 @@ const ProductCart = ({
         </div>
       </div>
       <DynamicModal
+        name={"detailsModal"}
         modalData={modalData}
         isOpen={openModal}
         onClose={() => setOpenModal(false)}
