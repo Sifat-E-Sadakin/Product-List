@@ -48,7 +48,7 @@ const ProductCart = ({
             onClick={() => handleModalOpen(product)}>
             <FiEye /> Quick View
           </button>
-          <div className="absolute  top-[12px] -left-[4] w-fit ps-2 h-[24px] rounded-tl bg-gradient-to-r from-[#F27D00] to-[#FFA03B]">
+          <div className="absolute  top-[12px] -left-[4px] w-fit ps-2 h-[24px] rounded-tl bg-gradient-to-r from-[#F27D00] to-[#FFA03B]">
             <div className="relative">
               <Image
                 src={connector}

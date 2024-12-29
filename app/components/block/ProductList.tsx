@@ -45,7 +45,7 @@ const ProductList = ({ productList }: ProductListProps) => {
     setCustomProductList(updatedProductList);
   };
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto  px-0 xl:px-16 2xl:px-40">
       <div className="grid  justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-9 my-3">
         {customProductList?.map((product: any) => (
           <ProductCart
